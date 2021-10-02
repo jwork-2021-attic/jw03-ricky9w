@@ -2,7 +2,6 @@ package example;
 
 import java.io.BufferedWriter;
 import java.io.FileWriter;
-import java.io.IOException;
 import java.net.URL;
 
 import example.classloader.SteganographyClassLoader;

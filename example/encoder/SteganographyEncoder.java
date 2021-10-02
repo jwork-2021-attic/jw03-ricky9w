@@ -40,8 +40,20 @@ public class SteganographyEncoder {
         return encode(bytes);
     }
 
-    public byte[] decodeByteArray(){
-        return decode();
+    public byte[] decodeByteArray() throws DecodingException {
+        byte[] bytes = decode();
+        int nameSize = byteArrayToInt(Arrays.copyOfRange(bytes, 0, 4));
+        if (nameSize <= 0 || nameSize > (bytes.length - 8)) {
+            throw new DecodingException("NameSize", nameSize);
+        }
+        int fileSize = byteArrayToInt(Arrays.copyOfRange(bytes, 4, 8));
+        if (fileSize < 0 || fileSize > (bytes.length - 8)) {
+            throw new DecodingException("DecodedFileSize", fileSize);
+        }
+        if (nameSize + fileSize > (bytes.length - 8)) {
+            throw new DecodingException("NameSize and DecodedFileSize", nameSize + fileSize);
+        }
+        return Arrays.copyOfRange(bytes, 8 + nameSize, 8 + nameSize + fileSize);
     }
 
     public String decodeString() {
