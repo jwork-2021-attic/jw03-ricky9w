@@ -1,6 +1,6 @@
 package example;
 
-public class myBubble implements Sorter {
+public class RickyBubbleSorter implements Sorter {
     private int[] a;
     private String plan = "";
     

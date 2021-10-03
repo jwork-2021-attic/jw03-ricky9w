@@ -1,6 +1,6 @@
 package example;
 
-public class mySelect implements Sorter {
+public class RickySelectSorter implements Sorter {
     
     private int[] a;
     private String plan = "";
